@@ -14,14 +14,6 @@ of the list. */
 void push(Node** head_ref, int new_key)
 {
 	/* allocate node */
-	if(*head_ref == NULL)
-        {
-            std::cout << "it is empty" <<std::endl;
-	}
-	else
-        {
-	    std::cout << "it is not" << std::endl;
-	}
 	Node* new_node = new Node();
 
 	/* put in the key */
@@ -34,20 +26,19 @@ void push(Node** head_ref, int new_key)
 	(*head_ref) = new_node;
 }
 
-void reverse(Node ** head_ref)
+int findLength(Node ** head_ref)
 {
-    Node * curr = *head_ref;
-    Node * prev = NULL;
-    Node * next = NULL;
+    Node * temp = *head_ref;
+    int length = 0;
+    if(temp == NULL)
+    return 0;
 
-    while(curr != NULL)
+    while(temp != NULL)
     {
-        next = curr->next;
-	curr->next = prev;
-        prev = curr;
-        curr = next;
+        temp = temp->next;
+        ++length;
     }
-    *head_ref = prev;
+    return length;
 }
 
 void print(Node ** head_ref)
@@ -74,12 +65,9 @@ int main() {
 	push(&head, 11);
 	push(&head, 21);
 	push(&head, 14);
+
+        std::cout << findLength(&head) << std::endl;    
 	 
-	print(&head);
-
-	reverse(&head);
-
-	print(&head);
 	return 0;
 }
 
